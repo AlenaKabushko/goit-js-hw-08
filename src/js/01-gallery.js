@@ -1,11 +1,17 @@
+// Описан в документации
+import SimpleLightbox from "simple-lightbox";
+// Дополнительный импорт стилей
+import "simple-lightbox/dist/simpleLightbox.min.css";
+
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 // Change code below this line
 
 console.log(galleryItems);
 
-
 const galleryLightBoxRef = document.querySelector(".gallery");
+const galleryList = document.createElement("ul");
+galleryList.classList.add("gallery")
 
 function createElementToGallery(galleryItems) {
     return galleryItems
@@ -19,7 +25,8 @@ function createElementToGallery(galleryItems) {
 };
 
 const addToGallery = createElementToGallery(galleryItems);
-galleryLightBoxRef.insertAdjacentHTML("beforeend", addToGallery);
+galleryList.insertAdjacentHTML("beforeend", addToGallery);
+galleryLightBoxRef.append(galleryList)
 
-// const lightbox = new SimpleLightbox('.gallery a', { 'captionsData': 'alt', 'captionDelay': '250' });
-// lightbox.on('show.simplelightbox');
+const lightbox = new SimpleLightbox({elements: '.gallery a'});
+lightbox.show();
